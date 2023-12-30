@@ -20,3 +20,14 @@ func _on_area_entered(area: Area3D) -> void:
 		
 		if ( area.trigger(hit_data, self) ):
 			hurtbox_detected.emit(area)
+
+func disable() -> void:
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
+
+func enable() -> void:
+	set_deferred("monitoring", true)
+	set_deferred("monitorable", true)
+
+func disabled() -> bool:
+	return monitoring and monitorable
