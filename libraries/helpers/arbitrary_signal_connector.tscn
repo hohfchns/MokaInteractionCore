@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b74vjcmlo0qvf"]
+
+[ext_resource type="Script" path="res://addons/MokaInteraction/libraries/helpers/arbitrary_signal_connector.gd" id="1_igssk"]
+
+[node name="ArbitrarySignalConnector" type="Node"]
+script = ExtResource("1_igssk")

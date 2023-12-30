@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://kekfc7qqmxjq"]
+
+[ext_resource type="Material" uid="uid://tqg0f37drrt2" path="res://addons/MokaInteraction/examples/2d/shaders/sm_fire2d.tres" id="1_suxmv"]
+[ext_resource type="Texture2D" uid="uid://cgojhkbqxunte" path="res://icon.svg" id="2_dw568"]
+[ext_resource type="PackedScene" uid="uid://bsdijwe5e1cet" path="res://addons/MokaInteraction/core/prefabs/interaction/hitbox2d.tscn" id="3_b2x5p"]
+[ext_resource type="PackedScene" uid="uid://b74vjcmlo0qvf" path="res://addons/MokaInteraction/libraries/helpers/arbitrary_signal_connector.tscn" id="4_dm5fa"]
+[ext_resource type="Script" path="res://addons/MokaInteraction/examples/agnostic/scripts/interaction/hit_data_tick_damage.gd" id="4_f2dab"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_misik"]
+size = Vector2(40, 32)
+
+[sub_resource type="Resource" id="Resource_xqtgu"]
+script = ExtResource("4_f2dab")
+period = 0.1
+duration = 1.0
+damage = 1
+flags = Array[StringName]([&"burn"])
+
+[node name="Fireball" type="RigidBody2D"]
+collision_layer = 0
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_misik")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("1_suxmv")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dw568")
+
+[node name="Hitbox2D" parent="." instance=ExtResource("3_b2x5p")]
+hit_data = SubResource("Resource_xqtgu")
+ignore_groups = Array[StringName]([&"Player"])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_misik")
+
+[node name="ArbitrarySignalConnector" parent="Hitbox2D" node_paths=PackedStringArray("_from_node", "_to_node") instance=ExtResource("4_dm5fa")]
+_signal = &"hurtbox_detected"
+_from_node = NodePath("..")
+_to_node = NodePath("../..")
+_to_function = &"queue_free"
+_discard_arguments = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="ArbitrarySignalConnector" parent="Timer" node_paths=PackedStringArray("_from_node", "_to_node") instance=ExtResource("4_dm5fa")]
+_signal = &"timeout"
+_from_node = NodePath("..")
+_to_node = NodePath("../..")
+_to_function = &"queue_free"

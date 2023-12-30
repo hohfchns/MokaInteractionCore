@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://dag1gdknwg2bc"]
+
+[ext_resource type="Material" uid="uid://b1sohorh0whk" path="res://addons/MokaInteraction/examples/3d/shaders/sm_fire3d.tres" id="1_rj4re"]
+[ext_resource type="PackedScene" uid="uid://b5omb3fq15jkw" path="res://addons/MokaInteraction/core/prefabs/interaction/hitbox3d.tscn" id="2_6poby"]
+[ext_resource type="Script" path="res://addons/MokaInteraction/examples/agnostic/scripts/interaction/hit_data_tick_damage.gd" id="3_6hm1y"]
+[ext_resource type="PackedScene" uid="uid://b74vjcmlo0qvf" path="res://addons/MokaInteraction/libraries/helpers/arbitrary_signal_connector.tscn" id="4_axdj3"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3naei"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="Resource" id="Resource_00xrk"]
+script = ExtResource("3_6hm1y")
+period = 0.1
+duration = 1.0
+damage = 1
+flags = Array[StringName]([&"burn"])
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xiadh"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1gx31"]
+radius = 0.075
+
+[node name="Fireball" type="RigidBody3D"]
+collision_layer = 0
+
+[node name="FireMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_3naei")
+surface_material_override/0 = ExtResource("1_rj4re")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_6poby")]
+hit_data = SubResource("Resource_00xrk")
+ignore_groups = Array[StringName]([&"Player"])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("SphereShape3D_xiadh")
+
+[node name="ArbitrarySignalConnector" parent="Hitbox" node_paths=PackedStringArray("_from_node", "_to_node") instance=ExtResource("4_axdj3")]
+_signal = &"hurtbox_detected"
+_from_node = NodePath("..")
+_to_node = NodePath("../..")
+_to_function = &"queue_free"
+_discard_arguments = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_1gx31")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="ArbitrarySignalConnector" parent="Timer" node_paths=PackedStringArray("_from_node", "_to_node") instance=ExtResource("4_axdj3")]
+_signal = &"timeout"
+_from_node = NodePath("..")
+_to_node = NodePath("../..")
+_to_function = &"queue_free"

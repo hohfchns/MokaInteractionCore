@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1fet50fprrpq"]
+
+[ext_resource type="Texture2D" uid="uid://cgojhkbqxunte" path="res://icon.svg" id="1_0t2fd"]
+[ext_resource type="Script" path="res://addons/MokaInteraction/examples/2d/scripts/player.gd" id="1_ev85e"]
+[ext_resource type="PackedScene" uid="uid://kekfc7qqmxjq" path="res://addons/MokaInteraction/examples/2d/prefabs/fireball.tscn" id="2_0si7x"]
+[ext_resource type="Script" path="res://addons/MokaInteraction/examples/agnostic/scripts/interaction/hit_data_tick_damage.gd" id="3_pdwb6"]
+
+[sub_resource type="Resource" id="Resource_6fbe1"]
+script = ExtResource("3_pdwb6")
+period = 0.1
+duration = 1.0
+damage = 1
+flags = Array[StringName]([&"burn"])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y1vu8"]
+size = Vector2(128, 128)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_ev85e")
+max_speed = 600.0
+_fireball = ExtResource("2_0si7x")
+_burn_hit_data = SubResource("Resource_6fbe1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0t2fd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y1vu8")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+rotation = -1.5708
+target_position = Vector2(0, 200)

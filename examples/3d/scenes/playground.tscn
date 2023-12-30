@@ -1,0 +1,154 @@
+[gd_scene load_steps=20 format=3 uid="uid://ci6nmndysnck0"]
+
+[ext_resource type="PackedScene" uid="uid://7sk56jedsq0h" path="res://addons/MokaInteraction/examples/3d/prefabs/player.tscn" id="1_c6jur"]
+[ext_resource type="PackedScene" uid="uid://nmhnh6aywf7a" path="res://addons/MokaInteraction/core/prefabs/interaction/hurtbox3d.tscn" id="2_au4bp"]
+[ext_resource type="Script" path="res://addons/MokaInteraction/examples/agnostic/scripts/mouse_mode_setter.gd" id="2_hn4vj"]
+[ext_resource type="Shader" path="res://addons/MokaInteraction/examples/3d/shaders/fire3d.gdshader" id="2_slogd"]
+[ext_resource type="PackedScene" uid="uid://dntpicgtab7ca" path="res://addons/MokaInteraction/core/prefabs/buff_handler.tscn" id="3_ndd77"]
+[ext_resource type="PackedScene" uid="uid://cdb31q86m4e8t" path="res://addons/MokaInteraction/examples/agnostic/prefabs/handlers/burnable.tscn" id="4_k4ufc"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_gfkhn"]
+rayleigh_color = Color(0.290196, 0.458824, 0.780392, 1)
+mie_color = Color(0.505882, 0.607843, 0.831373, 1)
+ground_color = Color(0.32549, 0.25098, 0.164706, 1)
+
+[sub_resource type="Sky" id="Sky_elgg1"]
+sky_material = SubResource("PhysicalSkyMaterial_gfkhn")
+
+[sub_resource type="Environment" id="Environment_n3c3e"]
+background_mode = 2
+sky = SubResource("Sky_elgg1")
+
+[sub_resource type="BoxMesh" id="BoxMesh_wdnyp"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53wxs"]
+albedo_color = Color(0.823529, 1, 0.886275, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s7il5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g05wp"]
+size = Vector3(1.1, 1.1, 1.1)
+
+[sub_resource type="Gradient" id="Gradient_3acyi"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.709804, 0.180392, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_853d1"]
+gradient = SubResource("Gradient_3acyi")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rn6v2"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_orpic"]
+noise = SubResource("FastNoiseLite_rn6v2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xiyd0"]
+render_priority = 0
+shader = ExtResource("2_slogd")
+shader_parameter/noise = SubResource("NoiseTexture2D_orpic")
+shader_parameter/gradient = SubResource("GradientTexture1D_853d1")
+
+[sub_resource type="BoxMesh" id="BoxMesh_wse74"]
+material = SubResource("ShaderMaterial_xiyd0")
+
+[node name="Playground" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n3c3e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0)
+light_color = Color(1, 1, 0.941176, 1)
+shadow_enabled = true
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="GroundMesh" type="CSGMesh3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_wdnyp")
+material = SubResource("StandardMaterial3D_53wxs")
+
+[node name="Player" parent="World/GroundMesh" instance=ExtResource("1_c6jur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43636, 0)
+
+[node name="Box" type="CSGMesh3D" parent="World/GroundMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.019, 2.54403)
+mesh = SubResource("BoxMesh_s7il5")
+
+[node name="Hurtbox" parent="World/GroundMesh/Box" instance=ExtResource("2_au4bp")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/GroundMesh/Box/Hurtbox"]
+shape = SubResource("BoxShape3D_g05wp")
+
+[node name="BuffHandler" parent="World/GroundMesh/Box/Hurtbox" instance=ExtResource("3_ndd77")]
+
+[node name="Burnable" parent="World/GroundMesh/Box" node_paths=PackedStringArray("_buff_handler") instance=ExtResource("4_k4ufc")]
+__hurtbox = NodePath("../Hurtbox")
+_buff_handler = NodePath("../Hurtbox/BuffHandler")
+
+[node name="FireEffect" type="MeshInstance3D" parent="World/GroundMesh/Box"]
+visible = false
+mesh = SubResource("BoxMesh_wse74")
+
+[node name="Box2" type="CSGMesh3D" parent="World/GroundMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.35155, 1.019, -1.3705)
+mesh = SubResource("BoxMesh_s7il5")
+
+[node name="Hurtbox" parent="World/GroundMesh/Box2" instance=ExtResource("2_au4bp")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/GroundMesh/Box2/Hurtbox"]
+shape = SubResource("BoxShape3D_g05wp")
+
+[node name="BuffHandler" parent="World/GroundMesh/Box2/Hurtbox" instance=ExtResource("3_ndd77")]
+
+[node name="Burnable" parent="World/GroundMesh/Box2" node_paths=PackedStringArray("_buff_handler") instance=ExtResource("4_k4ufc")]
+__hurtbox = NodePath("../Hurtbox")
+_buff_handler = NodePath("../Hurtbox/BuffHandler")
+
+[node name="FireEffect" type="MeshInstance3D" parent="World/GroundMesh/Box2"]
+visible = false
+mesh = SubResource("BoxMesh_wse74")
+
+[node name="Box3" type="CSGMesh3D" parent="World/GroundMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38526, 1.019, -3.86775)
+mesh = SubResource("BoxMesh_s7il5")
+
+[node name="Hurtbox" parent="World/GroundMesh/Box3" instance=ExtResource("2_au4bp")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/GroundMesh/Box3/Hurtbox"]
+shape = SubResource("BoxShape3D_g05wp")
+
+[node name="BuffHandler" parent="World/GroundMesh/Box3/Hurtbox" instance=ExtResource("3_ndd77")]
+
+[node name="FireEffect" type="MeshInstance3D" parent="World/GroundMesh/Box3/Hurtbox"]
+visible = false
+mesh = SubResource("BoxMesh_wse74")
+skeleton = NodePath("../..")
+
+[node name="Burnable" parent="World/GroundMesh/Box3" node_paths=PackedStringArray("_buff_handler") instance=ExtResource("4_k4ufc")]
+__hurtbox = NodePath("../Hurtbox")
+_buff_handler = NodePath("../Hurtbox/BuffHandler")
+
+[node name="Box4" type="CSGMesh3D" parent="World/GroundMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.39178, 1.019, -0.465708)
+mesh = SubResource("BoxMesh_s7il5")
+
+[node name="Hurtbox" parent="World/GroundMesh/Box4" instance=ExtResource("2_au4bp")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/GroundMesh/Box4/Hurtbox"]
+shape = SubResource("BoxShape3D_g05wp")
+
+[node name="BuffHandler" parent="World/GroundMesh/Box4/Hurtbox" instance=ExtResource("3_ndd77")]
+
+[node name="FireEffect" type="MeshInstance3D" parent="World/GroundMesh/Box4/Hurtbox"]
+visible = false
+mesh = SubResource("BoxMesh_wse74")
+skeleton = NodePath("../..")
+
+[node name="Burnable" parent="World/GroundMesh/Box4" node_paths=PackedStringArray("_buff_handler") instance=ExtResource("4_k4ufc")]
+__hurtbox = NodePath("../Hurtbox")
+_buff_handler = NodePath("../Hurtbox/BuffHandler")
+
+[node name="MouseMode" type="Node" parent="."]
+script = ExtResource("2_hn4vj")
+_mode = 2

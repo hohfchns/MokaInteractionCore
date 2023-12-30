@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://m5a0m0mstj33"]
+
+[ext_resource type="PackedScene" uid="uid://b35pe5j8rmdqo" path="res://addons/MokaInteraction/core/prefabs/interaction/hurtbox2d.tscn" id="1_swdxn"]
+[ext_resource type="PackedScene" uid="uid://dntpicgtab7ca" path="res://addons/MokaInteraction/core/prefabs/buff_handler.tscn" id="2_5cxan"]
+[ext_resource type="PackedScene" uid="uid://cdb31q86m4e8t" path="res://addons/MokaInteraction/examples/agnostic/prefabs/handlers/burnable.tscn" id="3_8hvqh"]
+[ext_resource type="Texture2D" uid="uid://cgojhkbqxunte" path="res://icon.svg" id="4_gyomd"]
+[ext_resource type="Material" uid="uid://tqg0f37drrt2" path="res://addons/MokaInteraction/examples/2d/shaders/sm_fire2d.tres" id="5_lomap"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxu4e"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smetw"]
+size = Vector2(100, 100)
+
+[node name="Box" type="StaticBody2D"]
+
+[node name="Hurtbox2D" parent="." instance=ExtResource("1_swdxn")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox2D"]
+shape = SubResource("RectangleShape2D_pxu4e")
+
+[node name="BuffHandler" parent="Hurtbox2D" instance=ExtResource("2_5cxan")]
+
+[node name="Burnable" parent="." node_paths=PackedStringArray("_buff_handler") instance=ExtResource("3_8hvqh")]
+__effect = NodePath("../BurnEffect")
+__hurtbox = NodePath("../Hurtbox2D")
+_buff_handler = NodePath("../Hurtbox2D/BuffHandler")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.658824, 0.262745, 0, 1)
+texture = ExtResource("4_gyomd")
+
+[node name="BurnEffect" type="Sprite2D" parent="."]
+material = ExtResource("5_lomap")
+position = Vector2(0, 29.5)
+scale = Vector2(1, 0.539062)
+texture = ExtResource("4_gyomd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_smetw")

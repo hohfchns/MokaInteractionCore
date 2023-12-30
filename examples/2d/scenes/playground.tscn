@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://p34bjpktrysx"]
+
+[ext_resource type="PackedScene" uid="uid://d1fet50fprrpq" path="res://addons/MokaInteraction/examples/2d/prefabs/player.tscn" id="1_1mrm1"]
+[ext_resource type="PackedScene" uid="uid://m5a0m0mstj33" path="res://addons/MokaInteraction/examples/2d/prefabs/box.tscn" id="2_cb34s"]
+
+[node name="Playground" type="Node2D"]
+
+[node name="Box" parent="." instance=ExtResource("2_cb34s")]
+position = Vector2(350, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_1mrm1")]
+__decceleration_sec = 0.05
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
