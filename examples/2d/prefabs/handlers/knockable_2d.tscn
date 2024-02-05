@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://k3gdwb14wn86"]
+
+[ext_resource type="Script" path="res://addons/MokaInteraction/examples/2d/scripts/handlers/knockable_2d.gd" id="1_80pc4"]
+
+[node name="Knockable2d" type="Node2D"]
+script = ExtResource("1_80pc4")

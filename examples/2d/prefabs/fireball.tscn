@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://kekfc7qqmxjq"]
+[gd_scene load_steps=9 format=3 uid="uid://kekfc7qqmxjq"]
 
+[ext_resource type="Script" path="res://addons/MokaInteraction/examples/2d/scripts/fireball.gd" id="1_gxx61"]
 [ext_resource type="Material" uid="uid://tqg0f37drrt2" path="res://addons/MokaInteraction/examples/2d/shaders/sm_fire2d.tres" id="1_suxmv"]
 [ext_resource type="Texture2D" uid="uid://cgojhkbqxunte" path="res://icon.svg" id="2_dw568"]
 [ext_resource type="PackedScene" uid="uid://bsdijwe5e1cet" path="res://addons/MokaInteraction/core/prefabs/interaction/hitbox2d.tscn" id="3_b2x5p"]
@@ -14,11 +15,15 @@ script = ExtResource("4_f2dab")
 period = 0.1
 duration = 1.0
 damage = 1
+knockback_force = 5.0
 flags = Array[StringName]([&"burn"])
+metadata = {}
 
-[node name="Fireball" type="RigidBody2D"]
+[node name="Fireball" type="RigidBody2D" node_paths=PackedStringArray("_hitbox")]
 collision_layer = 0
 gravity_scale = 0.0
+script = ExtResource("1_gxx61")
+_hitbox = NodePath("Hitbox2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)

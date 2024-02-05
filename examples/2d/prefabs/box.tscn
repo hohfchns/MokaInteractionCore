@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://m5a0m0mstj33"]
+[gd_scene load_steps=9 format=3 uid="uid://m5a0m0mstj33"]
 
 [ext_resource type="PackedScene" uid="uid://b35pe5j8rmdqo" path="res://addons/MokaInteraction/core/prefabs/interaction/hurtbox2d.tscn" id="1_swdxn"]
 [ext_resource type="PackedScene" uid="uid://dntpicgtab7ca" path="res://addons/MokaInteraction/core/prefabs/buff_handler.tscn" id="2_5cxan"]
 [ext_resource type="PackedScene" uid="uid://cdb31q86m4e8t" path="res://addons/MokaInteraction/examples/agnostic/prefabs/handlers/burnable.tscn" id="3_8hvqh"]
+[ext_resource type="PackedScene" uid="uid://k3gdwb14wn86" path="res://addons/MokaInteraction/examples/2d/prefabs/handlers/knockable_2d.tscn" id="4_5bg5e"]
 [ext_resource type="Texture2D" uid="uid://cgojhkbqxunte" path="res://icon.svg" id="4_gyomd"]
 [ext_resource type="Material" uid="uid://tqg0f37drrt2" path="res://addons/MokaInteraction/examples/2d/shaders/sm_fire2d.tres" id="5_lomap"]
 
@@ -25,6 +26,9 @@ shape = SubResource("RectangleShape2D_pxu4e")
 __effect = NodePath("../BurnEffect")
 __hurtbox = NodePath("../Hurtbox2D")
 _buff_handler = NodePath("../Hurtbox2D/BuffHandler")
+
+[node name="Knockable2d" parent="." node_paths=PackedStringArray("_hurtbox") instance=ExtResource("4_5bg5e")]
+_hurtbox = NodePath("../Hurtbox2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.658824, 0.262745, 0, 1)

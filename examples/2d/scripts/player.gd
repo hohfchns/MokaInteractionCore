@@ -47,10 +47,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("burn"):
 		var collider := _raycast.get_collider() as Hurtbox2D
 		if collider:
+			_burn_hit_data.knockback_direction = global_position.direction_to(collider.global_position)
 			collider.trigger(_burn_hit_data, _raycast)
 		else:
 			var inst := _fireball.instantiate() as RigidBody2D
-			get_parent().add_child(inst)
 			inst.global_transform = self.global_transform
 			inst.position += _last_move_dir * 100
 			inst.apply_impulse(_last_move_dir * _fireball_velocity)
+			get_parent().add_child(inst)

@@ -13,7 +13,7 @@ func trigger(hit_data: HitData, hitter: Node) -> bool:
 		if hitter.is_in_group(group):
 			return false
 	
-	var new_data := hit_data.duplicate()
+	var new_data := hit_data.make_copy()
 	new_data.hitter = hitter
 	triggered.emit(new_data)
 	return true
