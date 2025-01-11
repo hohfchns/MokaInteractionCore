@@ -12,7 +12,7 @@ func apply_buff(buff: Buff) -> void:
 		if not child is Buff:
 			continue
 		
-		if typeof(child) == typeof(buff):
+		if child.get_script().get_global_name() == buff.get_script().get_global_name():
 			child.restart()
 			buff_refreshed.emit(child)
 			return
@@ -33,5 +33,3 @@ func get_buff(type: int) -> Buff:
 func _on_buff_over(buff) -> void:
 	buff_ended.emit(buff)
 	buff.queue_free()
-
-
