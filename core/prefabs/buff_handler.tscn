@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dntpicgtab7ca"]
 
-[ext_resource type="Script" path="res://addons/MokaInteraction/core/scripts/buff_handler.gd" id="1_bpyuq"]
+[ext_resource type="Script" uid="uid://dipb8fqyqh6ye" path="res://addons/MokaInteraction/core/scripts/buff_handler.gd" id="1_bpyuq"]
 
 [node name="BuffHandler" type="Node"]
 script = ExtResource("1_bpyuq")

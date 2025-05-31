@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bsdijwe5e1cet"]
 
-[ext_resource type="Script" path="res://addons/MokaInteraction/core/scripts/interaction/hitbox2d.gd" id="1_56yas"]
+[ext_resource type="Script" uid="uid://cvfdho7b3va3" path="res://addons/MokaInteraction/core/scripts/interaction/hitbox2d.gd" id="1_56yas"]
 
 [node name="Hitbox2D" type="Area2D"]
 collision_layer = 2

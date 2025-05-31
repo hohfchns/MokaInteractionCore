@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b35pe5j8rmdqo"]
 
-[ext_resource type="Script" path="res://addons/MokaInteraction/core/scripts/interaction/hurtbox2d.gd" id="1_0gjdh"]
+[ext_resource type="Script" uid="uid://5smqgkrc1gri" path="res://addons/MokaInteraction/core/scripts/interaction/hurtbox2d.gd" id="1_0gjdh"]
 
 [node name="Hurtbox2D" type="Area2D"]
 collision_layer = 4

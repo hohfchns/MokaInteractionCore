@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://e031sc024k1f"]
 
-[ext_resource type="Script" path="res://addons/MokaInteraction/core/scripts/buff.gd" id="1_tvneo"]
+[ext_resource type="Script" uid="uid://d3ygyk7e5cv2d" path="res://addons/MokaInteraction/core/scripts/buff.gd" id="1_tvneo"]
 
 [node name="Buff" type="Node"]
 script = ExtResource("1_tvneo")

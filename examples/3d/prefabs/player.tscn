@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://7sk56jedsq0h"]
 
-[ext_resource type="Script" path="res://addons/MokaInteraction/examples/3d/scripts/player.gd" id="1_0q76x"]
-[ext_resource type="Script" path="res://addons/MokaInteraction/examples/agnostic/scripts/interaction/hit_data_tick_damage.gd" id="2_p57gw"]
+[ext_resource type="Script" uid="uid://bky3t8hj4ec20" path="res://addons/MokaInteraction/examples/3d/scripts/player.gd" id="1_0q76x"]
+[ext_resource type="Script" uid="uid://dh7smw776ys5n" path="res://addons/MokaInteraction/examples/agnostic/scripts/interaction/hit_data_tick_damage.gd" id="2_p57gw"]
 [ext_resource type="PackedScene" uid="uid://dag1gdknwg2bc" path="res://addons/MokaInteraction/examples/3d/prefabs/combat/fireball.tscn" id="3_48oxf"]
 
 [sub_resource type="Resource" id="Resource_bh4mb"]
@@ -9,7 +9,9 @@ script = ExtResource("2_p57gw")
 period = 0.3
 duration = 2.0
 damage = 1
+knockback_force = 0.0
 flags = Array[StringName]([&"burn"])
+metadata = {}
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uldsv"]
 radius = 0.25

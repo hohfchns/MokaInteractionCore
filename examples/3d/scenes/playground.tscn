@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://7sk56jedsq0h" path="res://addons/MokaInteraction/examples/3d/prefabs/player.tscn" id="1_c6jur"]
 [ext_resource type="PackedScene" uid="uid://nmhnh6aywf7a" path="res://addons/MokaInteraction/core/prefabs/interaction/hurtbox3d.tscn" id="2_au4bp"]
-[ext_resource type="Script" path="res://addons/MokaInteraction/examples/agnostic/scripts/mouse_mode_setter.gd" id="2_hn4vj"]
-[ext_resource type="Shader" path="res://addons/MokaInteraction/examples/3d/shaders/fire3d.gdshader" id="2_slogd"]
+[ext_resource type="Script" uid="uid://c0q1p3borco1e" path="res://addons/MokaInteraction/examples/agnostic/scripts/mouse_mode_setter.gd" id="2_hn4vj"]
+[ext_resource type="Shader" uid="uid://dgj0ei0y8xrg1" path="res://addons/MokaInteraction/examples/3d/shaders/fire3d.gdshader" id="2_slogd"]
 [ext_resource type="PackedScene" uid="uid://dntpicgtab7ca" path="res://addons/MokaInteraction/core/prefabs/buff_handler.tscn" id="3_ndd77"]
 [ext_resource type="PackedScene" uid="uid://cdb31q86m4e8t" path="res://addons/MokaInteraction/examples/agnostic/prefabs/handlers/burnable.tscn" id="4_k4ufc"]
 

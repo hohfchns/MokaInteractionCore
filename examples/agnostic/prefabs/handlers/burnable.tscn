@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cdb31q86m4e8t"]
 
-[ext_resource type="Script" path="res://addons/MokaInteraction/examples/agnostic/scripts/handlers/burnable.gd" id="1_sid7o"]
+[ext_resource type="Script" uid="uid://c1o20agf0n4ww" path="res://addons/MokaInteraction/examples/agnostic/scripts/handlers/burnable.gd" id="1_sid7o"]
 
 [node name="Burnable" type="Node"]
 script = ExtResource("1_sid7o")
