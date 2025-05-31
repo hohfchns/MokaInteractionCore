@@ -22,9 +22,9 @@ shape = SubResource("RectangleShape2D_pxu4e")
 
 [node name="BuffHandler" parent="Hurtbox2D" instance=ExtResource("2_5cxan")]
 
-[node name="Burnable" parent="." node_paths=PackedStringArray("_buff_handler") instance=ExtResource("3_8hvqh")]
+[node name="Burnable" parent="." node_paths=PackedStringArray("_hurtbox", "_buff_handler") instance=ExtResource("3_8hvqh")]
 __effect = NodePath("../BurnEffect")
-__hurtbox = NodePath("../Hurtbox2D")
+_hurtbox = NodePath("../Hurtbox2D")
 _buff_handler = NodePath("../Hurtbox2D/BuffHandler")
 
 [node name="Knockable2d" parent="." node_paths=PackedStringArray("_hurtbox") instance=ExtResource("4_5bg5e")]

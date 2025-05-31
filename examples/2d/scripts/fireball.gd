@@ -2,7 +2,7 @@ extends RigidBody2D
 
 @export_group("Required Nodes")
 @export
-var _hitbox: Hitbox2D
+var _hitbox: MKHitbox2D
 
 func _ready() -> void:
 	_hitbox.hurtbox_detected.connect(queue_free)

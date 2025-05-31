@@ -5,10 +5,8 @@ var __effect
 @onready
 var _effect = get_node(__effect) if __effect else null
 
-@export_node_path("Hurtbox3D", "Hurtbox2D")
-var __hurtbox
-@onready
-var _hurtbox = get_node(__hurtbox)
+@export
+var _hurtbox: MKAHurtbox
 
 @export
 var _buff_handler: BuffHandler
@@ -39,17 +37,17 @@ func _on_buff_ended(buff: Buff) -> void:
 		_effect.hide()
 
 func _on_damage(damage: int) -> void:
-	var data := HitData.new()
+	var data := MKHitData.new()
 	data.damage = damage
 	_hurtbox.trigger(data, self)
 
-func _on_hurtbox_hit(hit_data: HitData) -> void:
+func _on_hurtbox_hit(hit_data: MKHitData) -> void:
 	if hit_data.hitter == self:
 		return
-	if not "burn" in hit_data.flags:
+	if not &"burn" in hit_data.flags:
 		return
 	
-	hit_data = hit_data as HitDataTickDamage
+	hit_data = hit_data as MKHitDataTickDamage
 	if not hit_data:
 		return
 	

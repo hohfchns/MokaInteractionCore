@@ -1,23 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://kekfc7qqmxjq"]
+[gd_scene load_steps=8 format=3 uid="uid://kekfc7qqmxjq"]
 
 [ext_resource type="Script" uid="uid://b71j48gu78why" path="res://addons/MokaInteraction/examples/2d/scripts/fireball.gd" id="1_gxx61"]
 [ext_resource type="Material" uid="uid://tqg0f37drrt2" path="res://addons/MokaInteraction/examples/2d/shaders/sm_fire2d.tres" id="1_suxmv"]
 [ext_resource type="Texture2D" uid="uid://cgojhkbqxunte" path="res://icon.svg" id="2_dw568"]
 [ext_resource type="PackedScene" uid="uid://bsdijwe5e1cet" path="res://addons/MokaInteraction/core/prefabs/interaction/hitbox2d.tscn" id="3_b2x5p"]
 [ext_resource type="PackedScene" uid="uid://b74vjcmlo0qvf" path="res://addons/MokaInteraction/libraries/helpers/arbitrary_signal_connector.tscn" id="4_dm5fa"]
-[ext_resource type="Script" uid="uid://dh7smw776ys5n" path="res://addons/MokaInteraction/examples/agnostic/scripts/interaction/hit_data_tick_damage.gd" id="4_f2dab"]
+[ext_resource type="Resource" uid="uid://i0raoc3yq345" path="res://addons/MokaInteraction/examples/agnostic/prefabs/burn_hit_data.tres" id="6_5dtk1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_misik"]
 size = Vector2(40, 32)
-
-[sub_resource type="Resource" id="Resource_xqtgu"]
-script = ExtResource("4_f2dab")
-period = 0.1
-duration = 1.0
-damage = 1
-knockback_force = 5.0
-flags = Array[StringName]([&"burn"])
-metadata = {}
 
 [node name="Fireball" type="RigidBody2D" node_paths=PackedStringArray("_hitbox")]
 collision_layer = 0
@@ -35,8 +26,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_dw568")
 
 [node name="Hitbox2D" parent="." instance=ExtResource("3_b2x5p")]
-hit_data = SubResource("Resource_xqtgu")
-ignore_groups = Array[StringName]([&"Player"])
+hit_data = ExtResource("6_5dtk1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2D"]
 position = Vector2(0, 4)

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MKHitDataTickDamage" load_steps=2 format=3 uid="uid://i0raoc3yq345"]
+
+[ext_resource type="Script" uid="uid://dh7smw776ys5n" path="res://addons/MokaInteraction/examples/agnostic/scripts/interaction/hit_data_tick_damage.gd" id="1_02psj"]
+
+[resource]
+script = ExtResource("1_02psj")
+period = 0.3
+duration = 2.0
+damage = 1
+knockback_force = 1.0
+flags = Array[StringName]([&"burn"])
+metadata = {}

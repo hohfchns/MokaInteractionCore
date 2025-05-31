@@ -82,8 +82,9 @@ shape = SubResource("BoxShape3D_g05wp")
 
 [node name="BuffHandler" parent="World/GroundMesh/Box/Hurtbox" instance=ExtResource("3_ndd77")]
 
-[node name="Burnable" parent="World/GroundMesh/Box" node_paths=PackedStringArray("_buff_handler") instance=ExtResource("4_k4ufc")]
-__hurtbox = NodePath("../Hurtbox")
+[node name="Burnable" parent="World/GroundMesh/Box" node_paths=PackedStringArray("_hurtbox", "_buff_handler") instance=ExtResource("4_k4ufc")]
+__effect = NodePath("../FireEffect")
+_hurtbox = NodePath("../Hurtbox")
 _buff_handler = NodePath("../Hurtbox/BuffHandler")
 
 [node name="FireEffect" type="MeshInstance3D" parent="World/GroundMesh/Box"]
@@ -101,8 +102,9 @@ shape = SubResource("BoxShape3D_g05wp")
 
 [node name="BuffHandler" parent="World/GroundMesh/Box2/Hurtbox" instance=ExtResource("3_ndd77")]
 
-[node name="Burnable" parent="World/GroundMesh/Box2" node_paths=PackedStringArray("_buff_handler") instance=ExtResource("4_k4ufc")]
-__hurtbox = NodePath("../Hurtbox")
+[node name="Burnable" parent="World/GroundMesh/Box2" node_paths=PackedStringArray("_hurtbox", "_buff_handler") instance=ExtResource("4_k4ufc")]
+__effect = NodePath("../FireEffect")
+_hurtbox = NodePath("../Hurtbox")
 _buff_handler = NodePath("../Hurtbox/BuffHandler")
 
 [node name="FireEffect" type="MeshInstance3D" parent="World/GroundMesh/Box2"]
@@ -125,8 +127,9 @@ visible = false
 mesh = SubResource("BoxMesh_wse74")
 skeleton = NodePath("../..")
 
-[node name="Burnable" parent="World/GroundMesh/Box3" node_paths=PackedStringArray("_buff_handler") instance=ExtResource("4_k4ufc")]
-__hurtbox = NodePath("../Hurtbox")
+[node name="Burnable" parent="World/GroundMesh/Box3" node_paths=PackedStringArray("_hurtbox", "_buff_handler") instance=ExtResource("4_k4ufc")]
+__effect = NodePath("../Hurtbox/FireEffect")
+_hurtbox = NodePath("../Hurtbox")
 _buff_handler = NodePath("../Hurtbox/BuffHandler")
 
 [node name="Box4" type="CSGMesh3D" parent="World/GroundMesh"]
@@ -145,8 +148,9 @@ visible = false
 mesh = SubResource("BoxMesh_wse74")
 skeleton = NodePath("../..")
 
-[node name="Burnable" parent="World/GroundMesh/Box4" node_paths=PackedStringArray("_buff_handler") instance=ExtResource("4_k4ufc")]
-__hurtbox = NodePath("../Hurtbox")
+[node name="Burnable" parent="World/GroundMesh/Box4" node_paths=PackedStringArray("_hurtbox", "_buff_handler") instance=ExtResource("4_k4ufc")]
+__effect = NodePath("../Hurtbox/FireEffect")
+_hurtbox = NodePath("../Hurtbox")
 _buff_handler = NodePath("../Hurtbox/BuffHandler")
 
 [node name="MouseMode" type="Node" parent="."]

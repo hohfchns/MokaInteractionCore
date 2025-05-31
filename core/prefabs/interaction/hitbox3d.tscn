@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://btmlvwlvafhac" path="res://addons/MokaInteraction/core/scripts/interaction/hitbox3d.gd" id="1_38mev"]
 
-[node name="Hitbox3D" type="Area3D"]
+[node name="Hitbox3D" type="Area3D" node_paths=PackedStringArray("area")]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_38mev")
+area = NodePath(".")

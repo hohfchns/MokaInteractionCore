@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://b1sohorh0whk"]
 
-[ext_resource type="Shader" path="res://addons/MokaInteraction/examples/3d/shaders/fire3d.gdshader" id="1_wchvk"]
+[ext_resource type="Shader" uid="uid://dgj0ei0y8xrg1" path="res://addons/MokaInteraction/examples/3d/shaders/fire3d.gdshader" id="1_wchvk"]
 
 [sub_resource type="Gradient" id="Gradient_y0ofi"]
 colors = PackedColorArray(1, 0.247059, 0, 1, 1, 0.694118, 0.0352941, 1)

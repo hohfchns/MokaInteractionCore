@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmthffkbt02wd"]
+
+[ext_resource type="Script" uid="uid://b2od21b0gctnl" path="res://addons/MokaInteraction/core/scripts/interaction/hitray3d.gd" id="1_ot2wx"]
+
+[node name="Hitray3D" type="RayCast3D" node_paths=PackedStringArray("_ray")]
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("1_ot2wx")
+_ray = NodePath(".")

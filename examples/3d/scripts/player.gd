@@ -14,16 +14,13 @@ var _head_axis: Node3D
 var _sensitivity: float = 0.0015
 
 @export
-var _burn_hit_data: HitDataTickDamage
-
-@export
 var _fireball: PackedScene
 
 @export
 var _fireball_velocity: float = 10.0
 
 @onready
-var _raycast := $Head/RayCast3D
+var _hit_ray: MKHitRay3D = $Head/Hitray3D
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
@@ -50,10 +47,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("burn"):
-		var collider := _raycast.get_collider() as Hurtbox3D
-		if collider:
-			collider.trigger(_burn_hit_data, _raycast)
-		else:
+		if not _hit_ray.try_hit():
 			var inst := _fireball.instantiate() as RigidBody3D
 			get_parent().add_child(inst)
 			inst.global_transform = _head_axis.global_transform

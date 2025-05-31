@@ -1,5 +1,5 @@
-extends HitData
-class_name HitDataTickDamage
+extends MKHitData
+class_name MKHitDataTickDamage
 
 @export
 var period := 0.1

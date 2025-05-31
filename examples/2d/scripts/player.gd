@@ -10,8 +10,6 @@ var __decceleration_sec := 0.1
 @export
 var _fireball: PackedScene
 @export
-var _burn_hit_data: HitData
-@export
 var _fireball_velocity: float = 600.0
 
 @onready
@@ -20,7 +18,7 @@ var acceleration = max_speed / __acceleration_sec
 var decceleration = max_speed / __decceleration_sec
 
 @onready
-var _raycast: RayCast2D = $RayCast2D
+var _hit_ray: MKHitRay2D = $Hitray2D
 
 var _last_move_dir: Vector2 = Vector2(1, 0)
 
@@ -45,11 +43,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("burn"):
-		var collider := _raycast.get_collider() as Hurtbox2D
-		if collider:
-			_burn_hit_data.knockback_direction = global_position.direction_to(collider.global_position)
-			collider.trigger(_burn_hit_data, _raycast)
-		else:
+		if not _hit_ray.try_hit():
 			var inst := _fireball.instantiate() as RigidBody2D
 			inst.global_transform = self.global_transform
 			inst.position += _last_move_dir * 100

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://tqg0f37drrt2"]
 
-[ext_resource type="Shader" path="res://addons/MokaInteraction/examples/2d/shaders/fire2d.gdshader" id="1_vflsu"]
+[ext_resource type="Shader" uid="uid://d0oirqekg5qyj" path="res://addons/MokaInteraction/examples/2d/shaders/fire2d.gdshader" id="1_vflsu"]
 
 [sub_resource type="Gradient" id="Gradient_lks6c"]
 
@@ -15,10 +15,10 @@ noise = SubResource("FastNoiseLite_130eh")
 
 [resource]
 shader = ExtResource("1_vflsu")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_3rudk")
+shader_parameter/gradient_tex = SubResource("GradientTexture1D_gw0t3")
 shader_parameter/brighter_color = Color(1, 0.8, 0, 1)
 shader_parameter/middle_color = Color(1, 0.56, 0, 1)
 shader_parameter/darker_color = Color(0.64, 0.2, 0.05, 1)
 shader_parameter/spread = 1.0
 shader_parameter/alpha = 0.38
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_3rudk")
-shader_parameter/gradient_tex = SubResource("GradientTexture1D_gw0t3")
